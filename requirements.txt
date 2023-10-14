@@ -1,0 +1,9 @@
+fastapi 
+fastapi-cors
+jose
+jwt
+mysql-connector-python
+passlib[bcrypt]
+python-jose[cryptography]
+python-multipart
+uvicorn

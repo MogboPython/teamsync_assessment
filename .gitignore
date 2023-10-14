@@ -1,0 +1,6 @@
+tings.py
+__pycache__/
+venv/
+.env
+dump.py
+test.py
