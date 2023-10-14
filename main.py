@@ -28,7 +28,7 @@ def get_session():
         session.close()
 
 
-@app.post("/register")
+@app.post("/api/v1/register")
 async def register_user(user: schemas.UserCreate, session: Session = Depends(get_session)):
     existing_user = session.query(models.User).filter_by(username=user.username).first()
     if existing_user:
@@ -44,7 +44,7 @@ async def register_user(user: schemas.UserCreate, session: Session = Depends(get
 
     return {"message":"user created successfully"}
 
-@app.post('/login' ,response_model=schemas.Token)
+@app.post('/api/v1/login' ,response_model=schemas.Token)
 async def login(form_data: OAuth2PasswordRequestForm = Depends(), session: Session = Depends(get_session)):
     user = session.query(models.User).filter_by(username=form_data.username).first()
     if user is None:
@@ -68,7 +68,7 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends(), session: Sessi
 
     return {"access_token": access_token, "token_type": "bearer"}
     
-@app.post("/post")
+@app.post("/api/v1/post")
 async def create_post(post: schemas.PostCreate, current_user: str = Depends(get_current_user), session: Session = Depends(get_session)):
     new_post = models.Post(title=post.title, content=post.content, author=current_user)
     session.add(new_post)
@@ -78,12 +78,12 @@ async def create_post(post: schemas.PostCreate, current_user: str = Depends(get_
     return {"message":f"post created successfully by {current_user}"}
 
 
-@app.get("/posts")
+@app.get("/api/v1/posts")
 async def get_posts(session: Session = Depends(get_session)):
     posts = session.query(models.Post).all()
     return posts
 
-@app.put("/posts/{post_id}")
+@app.put("/api/v1/posts/{post_id}")
 async def update_post(post_id: int, post_update: schemas.PostUpdate, current_user: str = Depends(get_current_user),session: Session = Depends(get_session)):
     post = session.query(models.Post).filter_by(id = post_id).first()
     if post is None:
@@ -103,7 +103,7 @@ async def update_post(post_id: int, post_update: schemas.PostUpdate, current_use
     
     return {"message": f"post updated successfully by {current_user}"}
 
-@app.delete("/posts/{post_id}")
+@app.delete("/api/v1/posts/{post_id}")
 async def delete_post(post_id: int, current_user: str = Depends(get_current_user), session: Session = Depends(get_session)):
     post = session.query(models.Post).filter_by(id == post_id).first()
     if post is None:
