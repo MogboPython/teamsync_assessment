@@ -1,7 +1,7 @@
 ###########
 # BUILDER #
 ###########
-FROM python:3.11.1-slim-buster as builder
+FROM python:3.9.4-buster as builder
 
 WORKDIR /opt/app
 
@@ -17,7 +17,7 @@ RUN pip wheel --no-cache-dir --no-deps --wheel-dir /opt/wheels -r requirements.t
 #########
 # FINAL #
 #########
-FROM python:3.11.1-slim-buster as final
+FROM python:3.9.4-buster as final
 
 RUN mkdir -p /opt/app
 
