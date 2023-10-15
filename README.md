@@ -1,16 +1,13 @@
 # TeamSync Assessment
 This project holds the code for my submission for the assessment project given to me by TeamSync.
 
-## Forking project on replit
-You can run/fork this project on replit here --> https://replit.com/@abdadeel/FastAPI-Starter
-
 
 ## Setting up locally
 
 To setup the project locally clone the repository.
 
 ```shell
-git clone https://github.com/mabdullahadeel/fcc-fastapi-jwt
+git clone https://github.com/MogboPython/teamsync_assessment.git
 ```
 
 Install required dependencies.
@@ -19,8 +16,14 @@ Install required dependencies.
 pip install -r requirements.txt
 ```
 
-To run the server in development mode
+To run the server in development mode. The `--reload` tells the server to run in debug mode.
 
 ```shell
-python runserver.py
+uvicorn main:app --reload
+```
+
+To see the routes go to the following in your browser.
+
+```
+127.0.0.1:8000/docs
 ```
