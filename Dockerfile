@@ -1,7 +1,7 @@
 ###########
 # BUILDER #
 ###########
-FROM python:3.9.4-buster as builder
+FROM python:3.11-slim-buster as builder
 
 WORKDIR /opt/app
 
@@ -17,7 +17,7 @@ RUN pip wheel --no-cache-dir --no-deps --wheel-dir /opt/wheels -r requirements.t
 #########
 # FINAL #
 #########
-FROM python:3.9.4-buster as final
+FROM python:3.11-slim-buster as final
 
 RUN mkdir -p /opt/app
 
@@ -27,6 +27,6 @@ COPY --from=builder /opt/app .
 RUN pip install --upgrade pip
 RUN pip install --no-cache /wheels/*
 
-EXPOSE 80
+EXPOSE 8080
 
-CMD python -m uvicorn main:app --host 0.0.0.0 --port 80
+CMD python -m uvicorn main:app --host 0.0.0.0 --port 8080

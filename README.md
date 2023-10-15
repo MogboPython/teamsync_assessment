@@ -27,3 +27,8 @@ To see the routes go to the following in your browser.
 ```
 127.0.0.1:8000/docs
 ```
+
+## For the live deployment.
+```
+https://teamsync.fly.dev/docs
+```
