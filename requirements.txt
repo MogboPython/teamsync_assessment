@@ -1,11 +1,13 @@
 alembic
+bcrypt
+cryptography
 fastapi 
 fastapi-cors
 jose
 jwt
 mysql-connector-python
-passlib[bcrypt]
+passlib
 psycopg2-binary
-python-jose[cryptography]
+python-jose
 python-multipart
 uvicorn
